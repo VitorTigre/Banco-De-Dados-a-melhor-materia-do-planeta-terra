@@ -13,3 +13,4 @@ SELECT alunos.nome, matriculas.curso FROM alunos LEFT JOIN matriculas ON alunos.
 SELECT a.nome AS autor, l.titulo FROM autores a LEFT JOIN livros l on a.id = l.autor_id;
 SELECT cursos.curso, alunos.nome FROM alunos RIGHT JOIN cursos ON alunos.id = cursos.aluno_id;
 SELECT alunos.nome, cursos.curso FROM alunos INNER JOIN cursos ON alunos.id = cursos.aluno_id;
+SELECT a.nome AS autor, COUNT (l.id) AS total_de_livros FROM autores a LEFT JOIN livros l ON a.id = l.autor_id GROUP BY a.nome ORDER BY COUNT (l.id) DESC LIMIT 1;
