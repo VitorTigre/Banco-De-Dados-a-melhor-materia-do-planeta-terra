@@ -4,3 +4,4 @@ SELECT l.titulo FROM livros l JOIN autores a ON l.autor_id = a.id WHERE a.nome =
 SELECT alunos.nome FROM alunos JOIN matriculas ON alunos.id = matriculas.alunos_id WHERE matriculas.curso = 'Engenharia de Software';
 SELECT produto, SUM(receita) AS receita_total FROM vendas GROUP BY produto;
 SELECT a.nome AS autor, COUNT (l.id) AS toal_de_livros FROM autores a LEFT JOIN livros l ON a.id = l.autor_id GROUP BY a.nome;
+SELECT curso, COUNT (aluno_id) AS total_de_alunos FROM matriculas GROUP BY curso;
