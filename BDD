@@ -11,3 +11,4 @@ SELECT a.nome AS autor, COUNT (l.id) AS total_de_livros FROM autores a LEFT  JOI
 SELECT l.titulo, a.nome AS autor FROM livros l JOIN autores a ON l.autor_id = a.id;
 SELECT alunos.nome, matriculas.curso FROM alunos LEFT JOIN matriculas ON alunos.id = matriculas.aluno_id;
 SELECT a.nome AS autor, l.titulo FROM autores a LEFT JOIN livros l on a.id = l.autor_id;
+SELECT cursos.curso, alunos.nome FROM alunos RIGHT JOIN cursos ON alunos.id = cursos.aluno_id;
