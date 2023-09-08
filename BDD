@@ -17,3 +17,4 @@ SELECT a.nome AS autor, COUNT (l.id) AS total_de_livros FROM autores a LEFT JOIN
 SELECT produto FROM vendas GROUP BY produto ORDER BY SUM (receita) ASC LIMIT 1;
 "Segundo a orientação do senhor, o 18 commit estava com erro"
 SELECT alunos.nome, COUNT(matriculas.id) AS total_de_matriculas FROM alunos LEFT JOIN matriculas ON alunos.id = matriculas.aluno_id GROUP BY alunos.nome;
+SELECT produto FROM vendas GROUP BY produto ORDER BY COUNT(id) DESC LIMIT 1;
