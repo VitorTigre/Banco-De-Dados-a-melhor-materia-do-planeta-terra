@@ -16,3 +16,4 @@ SELECT alunos.nome, cursos.curso FROM alunos INNER JOIN cursos ON alunos.id = cu
 SELECT a.nome AS autor, COUNT (l.id) AS total_de_livros FROM autores a LEFT JOIN livros l ON a.id = l.autor_id GROUP BY a.nome ORDER BY COUNT (l.id) DESC LIMIT 1;
 SELECT produto FROM vendas GROUP BY produto ORDER BY SUM (receita) ASC LIMIT 1;
 "Segundo a orientação do senhor, o 18 commit estava com erro"
+SELECT alunos.nome, COUNT(matriculas.id) AS total_de_matriculas FROM alunos LEFT JOIN matriculas ON alunos.id = matriculas.aluno_id GROUP BY alunos.nome;
