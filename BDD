@@ -7,3 +7,4 @@ SELECT a.nome AS autor, COUNT (l.id) AS toal_de_livros FROM autores a LEFT JOIN 
 SELECT curso, COUNT (aluno_id) AS total_de_alunos FROM matriculas GROUP BY curso;
 SELECT produto, AVG(receita) AS media_de_receita FROM vendas GROUP BY produto;
 SELECT produto FROM vendas GROUP BY produto HAVING SUM (receita) > 10000;
+SELECT a.nome AS autor, COUNT (l.id) AS total_de_livros FROM autores a LEFT  JOIN livros l ON a.id - l.autor_id GROUP BY a.nome HAVING COUNT (l.id) > 2;
