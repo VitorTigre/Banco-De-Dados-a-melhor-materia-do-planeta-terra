@@ -84,3 +84,43 @@ DELIMITER //
    DELIMITER ;
 
    CALL sp_TitulosPorCategoria('Ciência');
+
+DELIMITER //
+   CREATE PROCEDURE sp_AdicionarLivro(
+       IN tituloLivro VARCHAR(255),
+       IN editoraID INT,
+       IN anoPublicacao INT,
+       IN numPaginas INT,
+       IN categoriaID INT,
+       OUT mensagem VARCHAR(255)
+   )
+   BEGIN
+       DECLARE EXIT HANDLER FOR SQLEXCEPTION
+       BEGIN
+           ROLLBACK;
+           SET mensagem = 'Erro ao adicionar o livro. Verifique os dados.';
+       END;
+
+       START TRANSACTION;
+
+       -- Verifique se o título já existe
+       SELECT COUNT(*) INTO @livroExistente
+       FROM Livro
+       WHERE Titulo = tituloLivro;
+
+       IF @livroExistente > 0 THEN
+           SET mensagem = 'O livro com o mesmo título já existe.';
+           ROLLBACK;
+       ELSE
+           -- Inserir o novo livro
+           INSERT INTO Livro (Titulo, Editora_ID, Ano_Publicacao, Numero_Paginas, Categoria_ID)
+           VALUES (tituloLivro, editoraID, anoPublicacao, numPaginas, categoriaID);
+
+           COMMIT;
+           SET mensagem = 'Livro adicionado com sucesso.';
+       END IF;
+   END //
+   DELIMITER ;
+
+   CALL sp_AdicionarLivro('Novo Livro', 1, 2023, 250, 2, @mensagem);
+   SELECT @mensagem;
