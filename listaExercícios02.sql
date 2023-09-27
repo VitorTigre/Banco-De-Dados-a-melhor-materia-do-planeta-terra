@@ -47,3 +47,11 @@ DELIMITER //
 CALL sp_VerificarLivrosCategoria('História', @possui);
    SELECT @possui;
 
+DELIMITER //
+   CREATE PROCEDURE sp_LivrosAteAno(IN anoPublicacao INT)
+   BEGIN
+       SELECT * FROM Livro WHERE Ano_Publicacao <= anoPublicacao;
+   END //
+   DELIMITER ;
+
+   CALL sp_LivrosAteAno(2010);
